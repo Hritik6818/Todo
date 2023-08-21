@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> To Do List </title>
+    <link rel="stylesheet" href="to_do_list.css">
+</head>
+<body>
+    <div id="todo">
+
+        <h1>To Do List  </h1>
+    
+        <form id="code" >
+            <label for="task-input" >Enter a new Task:  </label>
+            <input type=" text" id="task-input" name="task-input"/>
+            <button>Add Task</button>
+        </form>
+    
+        <ul id="task-list"></ul>
+    </div>
+ 
+
+
+    <script>
+        const form = document.querySelector('form');
+        const taskList = document.querySelector('#task-list');
+
+        function addTask(task){
+            const listItem = document.createElement('li')
+            listItem.innerHTML = `<input type = "checkbox" /> <span>${task}</span><button>Delete</button>`;
+            taskList.appendChild(listItem);
+        }
+
+        form.addEventListener('submit', (event)=>{
+             event.preventDefault();
+             const input = document.querySelector('#task-input');
+             const task = input.value;
+             addTask(task);
+             input.value = ''
+
+        })
+         
+        taskList.addEventListener ('click',(event)=>{
+            if(event.target.tagName === 'BUTTON'){
+                const listItem = event.target.parentElement
+                taskList.removeChild(listItem);
+            }
+        })
+             
+
+    </script>
+</body>
+</html>
